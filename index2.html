@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Conferidor – Bolão da Parentada - Mega da Virada 2025</title>
+
+  <style>
+    :root{
+      /* Fundo festivo */
+      --bgA:#1aa85a;     /* verde */
+      --bgB:#ffd36b;     /* dourado */
+      --bgC:#7dd3fc;     /* azul */
+      --bgD:#e8fff3;     /* base clara */
+
+      /* UI */
+      --card: rgba(255,255,255,.86);
+      --card2: rgba(255,255,255,.72);
+      --line: rgba(15,23,42,.10);
+      --shadow: 0 16px 45px rgba(2, 6, 23, .18);
+
+      --textDark:#0b1b12;
+      --mutedDark:#48635a;
+
+      --green:#15803d;
+      --green2:#22c55e;
+      --gold:#b98500;
+      --gold2:#f59e0b;
+      --blue:#0284c7;
+      --red:#dc2626;
+
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:#ffffff;
+
+      /* Fundo “esperança/dinheiro/virada” */
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(255,255,255,.25), transparent 55%),
+        radial-gradient(900px 600px at 85% 20%, rgba(255,255,255,.20), transparent 60%),
+        radial-gradient(900px 700px at 50% 0%, rgba(255,255,255,.18), transparent 55%),
+        linear-gradient(135deg, rgba(26,168,90,.85), rgba(255,211,107,.78), rgba(125,211,252,.70)),
+        linear-gradient(180deg, var(--bgD), #ffffff 70%);
+      min-height:100vh;
+      position:relative;
+      overflow-x:hidden;
+    }
+
+    /* Confete no fundo (sem imagens externas) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.28;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(245,158,11,.8) 0 2px, transparent 3px),
+        radial-gradient(circle at 30% 10%, rgba(34,197,94,.75) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 15%, rgba(2,132,199,.75) 0 2px, transparent 3px),
+        radial-gradient(circle at 90% 30%, rgba(245,158,11,.8) 0 2px, transparent 3px),
+        radial-gradient(circle at 20% 60%, rgba(2,132,199,.75) 0 2px, transparent 3px),
+        radial-gradient(circle at 55% 55%, rgba(34,197,94,.75) 0 2px, transparent 3px),
+        radial-gradient(circle at 80% 70%, rgba(245,158,11,.8) 0 2px, transparent 3px),
+        radial-gradient(circle at 40% 85%, rgba(34,197,94,.75) 0 2px, transparent 3px);
+      background-size: 260px 260px;
+      filter: blur(.1px);
+    }
+
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:16px;
+    }
+
+    /* Header */
+    .top{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin:8px 0 14px;
+      text-align:center;
+    }
+    h1{
+      margin:0;
+      font-size:26px;
+      font-weight:900;
+      letter-spacing:.2px;
+      text-shadow: 0 8px 28px rgba(2,6,23,.35);
+    }
+    .sub{
+      margin:0;
+      font-size:14px;
+      line-height:1.35;
+      color:rgba(255,255,255,.92);
+      text-shadow: 0 6px 22px rgba(2,6,23,.22);
+    }
+    .chips{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      height:34px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.30);
+      background:rgba(255,255,255,.18);
+      color:#fff;
+      font-size:13px;
+      font-weight:800;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 26px rgba(2,6,23,.10);
+    }
+    .chip b{font-weight:900}
+
+    /* Layout (sem coluna lateral) */
+    .grid{display:grid; grid-template-columns:1fr; gap:12px;}
+
+    /* Cards claros */
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:14px;
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+      color:var(--textDark);
+    }
+
+    .label{
+      font-size:12px;
+      color:var(--mutedDark);
+      margin-bottom:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+
+    .inputs{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:8px;
+    }
+    .num{
+      height:48px;
+      border-radius:12px;
+      border:1px solid rgba(15,23,42,.12);
+      background:rgba(255,255,255,.92);
+      color:var(--textDark);
+      font-size:16px;
+      font-weight:900;
+      text-align:center;
+      outline:none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.65);
+    }
+    .num:focus{
+      border-color: rgba(34,197,94,.55);
+      box-shadow: 0 0 0 4px rgba(34,197,94,.15);
+    }
+
+    .hint{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--mutedDark);
+      font-weight:700;
+    }
+
+    .btnRow{display:flex; gap:10px; margin-top:12px;}
+    button{
+      height:46px;
+      flex:1;
+      border-radius:14px;
+      border:1px solid rgba(15,23,42,.12);
+      background:rgba(255,255,255,.70);
+      color:var(--textDark);
+      font-weight:900;
+      cursor:pointer;
+      box-shadow: 0 10px 22px rgba(2,6,23,.08);
+    }
+    button:hover{filter:brightness(1.03)}
+    button.primary{
+      border:none;
+      color:#fff;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      box-shadow: 0 18px 36px rgba(21,128,61,.25);
+    }
+
+    /* KPIs */
+    .kpis{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    @media(min-width:520px){ .kpis{grid-template-columns:repeat(4,1fr);} }
+
+    .kpi{
+      background:var(--card2);
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:10px 12px;
+      min-height:68px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:3px;
+      box-shadow: 0 12px 26px rgba(2,6,23,.06);
+    }
+    .kpi .v{font-size:22px; font-weight:1000;}
+    .kpi .t{font-size:12px; color:var(--mutedDark); font-weight:800;}
+
+    /* Resumo */
+    .summary{
+      margin-top:12px;
+      background:var(--card2);
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:10px 12px;
+      font-size:13px;
+      color:var(--textDark);
+      line-height:1.35;
+      font-weight:700;
+    }
+    .summary b{font-weight:1000}
+
+    /* Tabs */
+    .tabs{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;}
+    .tab{
+      height:38px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.12);
+      background:rgba(255,255,255,.65);
+      color:var(--mutedDark);
+      display:inline-flex;
+      align-items:center;
+      font-size:13px;
+      font-weight:1000;
+      cursor:pointer;
+      user-select:none;
+      box-shadow: 0 10px 22px rgba(2,6,23,.06);
+    }
+    .tab.active{
+      color:#fff;
+      border:none;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      box-shadow: 0 18px 34px rgba(185,133,0,.18);
+    }
+
+    /* Lista */
+    .list{display:flex; flex-direction:column; gap:10px; margin-top:12px;}
+    .item{
+      border-radius:18px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.88);
+      padding:12px;
+      box-shadow: 0 14px 34px rgba(2,6,23,.08);
+    }
+    .itemTop{display:flex; justify-content:space-between; gap:10px; align-items:center;}
+    .meta{font-size:12px; color:var(--mutedDark); font-weight:900;}
+
+    .badge{
+      font-size:12px;
+      font-weight:1000;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.85);
+      color:var(--mutedDark);
+      white-space:nowrap;
+      box-shadow: 0 10px 22px rgba(2,6,23,.06);
+    }
+    .badge.sena{
+      border:none;
+      color:#fff;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+    }
+    .badge.quina{
+      border:none;
+      color:#fff;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+    }
+    .badge.quadra{
+      border:none;
+      color:#fff;
+      background: linear-gradient(135deg, #ef4444, var(--red));
+    }
+
+    .nums{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+    .nchip{
+      height:26px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 9px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.92);
+      color:var(--textDark);
+      font-size:12px;
+      font-weight:1000;
+    }
+    .micro{
+      margin-top:8px;
+      font-size:12px;
+      color:var(--mutedDark);
+      line-height:1.35;
+      font-weight:800;
+    }
+
+    .footer{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--mutedDark);
+      font-weight:800;
+    }
+    .error{color:#b91c1c; font-weight:1000}
+    .muted{color:var(--mutedDark); font-weight:800}
+
+    /* Melhor responsividade em telas pequenas */
+    @media(max-width:420px){
+      h1{font-size:22px}
+      .chip{height:32px;font-size:12px}
+      .num{height:46px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h1>Conferidor do Bolão da Parentada – Mega da Virada 2025</h1>
+      <p class="sub">Digite as 6 dezenas sorteadas.</p>
+
+      <div class="chips">
+        <span class="chip">🎟️ <b>80</b> apostas</span>
+        <span class="chip">🧮 <b>235</b> combinações</span>
+        <span class="chip">💰 <b>R$ 1.410</b></span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="label">Dezenas do sorteio</div>
+
+        <div class="inputs" id="inputs">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N1">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N2">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N3">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N4">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N5">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N6">
+        </div>
+
+        <div class="hint">Use números de 1 a 60 (sem repetir).</div>
+
+        <div class="btnRow">
+          <button class="primary" id="btnCheck">Conferir</button>
+          <button id="btnClear">Limpar</button>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><div class="v" id="kBest">—</div><div class="t">Melhor acerto</div></div>
+          <div class="kpi"><div class="v" id="kSena">—</div><div class="t">Senas (eq.)</div></div>
+          <div class="kpi"><div class="v" id="kQuina">—</div><div class="t">Quinas (eq.)</div></div>
+          <div class="kpi"><div class="v" id="kQuadra">—</div><div class="t">Quadras (eq.)</div></div>
+        </div>
+
+        <div class="summary">
+          Equivalente a <b>235</b> apostas simples. Chance aprox. de Sena: <b>~1 em 213.038</b>
+        </div>
+
+        <div class="tabs">
+          <div class="tab active" id="tabPrizes">Premiações (4/5/6)</div>
+          <div class="tab" id="tabAll">Todos os jogos (0–6)</div>
+        </div>
+
+        <div class="list" id="list"></div>
+
+        <div class="footer" id="msg">Preencha as dezenas e clique em <b>Conferir</b>.</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Apostas do comprovante (80)
+  const BETS = [
+    [1,8,19,23,31,42,45,54,60],[5,10,22,24,35,44,49,57],[7,12,26,28,38,46,51,59],[2,14,16,33,41,52,56],[3,21,23,37,48,58,60],
+    [1,6,18,29,39,45,55],[29,42,20,22,59,10],[15,50,26,22,59,10],[3,38,34,22,59,10],[2,37,32,22,59,10],
+    [9,36,55,22,59,10],[14,27,43,22,59,10],[33,4,47,22,59,10],[53,21,18,22,59,10],[29,42,20,13,39,58],
+    [15,50,26,13,39,58],[3,38,34,13,39,58],[2,37,32,13,39,58],[9,36,55,13,39,58],[14,27,43,13,39,58],
+    [33,4,47,13,39,58],[53,21,18,13,39,58],[29,42,20,30,46,17],[15,50,26,30,46,17],[3,38,34,30,46,17],
+    [2,37,32,30,46,17],[9,36,55,30,46,17],[14,27,43,30,46,17],[33,4,47,30,46,17],[53,21,18,30,46,17],
+    [29,42,20,54,12,31],[15,50,26,54,12,31],[3,38,34,54,12,31],[2,37,32,54,12,31],[9,36,55,54,12,31],
+    [14,27,43,54,12,31],[33,4,47,54,12,31],[53,21,18,54,12,31],[29,42,20,8,44,25],[15,50,26,8,44,25],
+    [3,38,34,8,44,25],[2,37,32,8,44,25],[9,36,55,8,44,25],[14,27,43,8,44,25],[33,4,47,8,44,25],
+    [53,21,18,8,44,25],[29,42,20,48,6,57],[15,50,26,48,6,57],[3,38,34,48,6,57],[2,37,32,48,6,57],
+    [9,36,55,48,6,57],[14,27,43,48,6,57],[33,4,47,48,6,57],[53,21,18,48,6,57],[29,42,20,35,11,41],
+    [15,50,26,35,11,41],[3,38,34,35,11,41],[2,37,32,35,11,41],[9,36,55,35,11,41],[14,27,43,35,11,41],
+    [33,4,47,35,11,41],[53,21,18,35,11,41],[29,42,20,40,52,19],[15,50,26,40,52,19],[3,38,34,40,52,19],
+    [2,37,32,40,52,19],[9,36,55,40,52,19],[14,27,43,40,52,19],[33,4,47,40,52,19],[53,21,18,40,52,19],
+    [5,7,10,22,37,54],[16,24,3,18,35,59],[28,49,2,14,41,52],[51,56,6,21,38,47],[1,24,12,26,39,55],
+    [7,45,8,19,33,58],[5,60,11,27,34,46],[16,23,9,20,32,53],[28,56,4,15,31,44],[49,60,13,25,36,42]
+  ];
+
+  const $ = (id)=>document.getElementById(id);
+  const inputs = Array.from(document.querySelectorAll('#inputs input'));
+  let mode = 'prizes';
+  let lastResults = [];
+
+  function nCk(n,k){
+    if(k<0||k>n) return 0;
+    if(k===0||k===n) return 1;
+    k=Math.min(k,n-k);
+    let num=1, den=1;
+    for(let i=1;i<=k;i++){
+      num *= (n-(k-i));
+      den *= i;
+    }
+    return Math.round(num/den);
+  }
+
+  function eqCounts(n, m){
+    const e = n - m;
+    const c = {6:0,5:0,4:0,3:0,2:0,1:0,0:0};
+    for(const p of [6,5,4,3,2,1,0]){
+      const need = 6 - p;
+      if(m>=p && e>=need){
+        c[p] = nCk(m,p) * nCk(e, need);
+      }
+    }
+    return c;
+  }
+
+  function parseDraw(){
+    const raw = inputs.map(i=>i.value.trim()).filter(v=>v.length>0).map(Number);
+    if(raw.length !== 6) return {ok:false, err:"Preencha exatamente 6 dezenas."};
+    if(raw.some(v=>!Number.isInteger(v) || v<1 || v>60)) return {ok:false, err:"Use apenas números inteiros de 1 a 60."};
+    const set = new Set(raw);
+    if(set.size !== 6) return {ok:false, err:"Não repita dezenas."};
+    const draw = [...set].sort((a,b)=>a-b);
+    return {ok:true, draw, set:new Set(draw)};
+  }
+
+  function matches(bet, drawSet){
+    let m=0;
+    for(const x of bet) if(drawSet.has(x)) m++;
+    return m;
+  }
+
+  function pad2(n){ return String(n).padStart(2,'0'); }
+
+  function badgeFor(eq, m){
+    if(eq[6]>0) return {txt:'SENA', cls:'sena'};
+    if(eq[5]>0) return {txt:'QUINA', cls:'quina'};
+    if(eq[4]>0) return {txt:'QUADRA', cls:'quadra'};
+    return {txt:`${m} acertos`, cls:''};
+  }
+
+  function renderList(){
+    const list = $('list');
+    list.innerHTML = "";
+
+    const data = (mode==='prizes')
+      ? lastResults.filter(r => (r.eq[4]||r.eq[5]||r.eq[6]))
+      : lastResults;
+
+    if(!data.length){
+      const empty = document.createElement('div');
+      empty.className = 'muted';
+      empty.style.padding = '8px 2px';
+      empty.textContent = (mode==='prizes')
+        ? "Nenhuma premiação (Quadra/Quina/Sena) encontrada nas apostas para este resultado."
+        : "Sem resultados para exibir.";
+      list.appendChild(empty);
+      return;
+    }
+
+    for(const r of data){
+      const it = document.createElement('div');
+      it.className = 'item';
+
+      const b = badgeFor(r.eq, r.m);
+      const top = document.createElement('div');
+      top.className = 'itemTop';
+      top.innerHTML = `<div class="meta">Jogo #${r.idx}</div>
+                       <div class="badge ${b.cls}">${b.txt}</div>`;
+      it.appendChild(top);
+
+      const nums = document.createElement('div');
+      nums.className = 'nums';
+      r.bet.forEach(n=>{
+        const s = document.createElement('span');
+        s.className = 'nchip';
+        s.textContent = pad2(n);
+        nums.appendChild(s);
+      });
+      it.appendChild(nums);
+
+      const micro = document.createElement('div');
+      micro.className = 'micro';
+      micro.textContent = `Acertos: ${r.m} • Eq.: 6→${r.eq[6]} | 5→${r.eq[5]} | 4→${r.eq[4]} | 3→${r.eq[3]} | 2→${r.eq[2]}`;
+      it.appendChild(micro);
+
+      list.appendChild(it);
+    }
+  }
+
+  function compute(){
+    const parsed = parseDraw();
+    if(!parsed.ok){
+      $('msg').innerHTML = `<span class="error">${parsed.err}</span>`;
+      return;
+    }
+
+    const {draw, set} = parsed;
+
+    let best = 0;
+    const totals = {6:0,5:0,4:0,3:0,2:0,1:0,0:0};
+
+    lastResults = BETS.map((bet,i)=>{
+      const m = matches(bet,set);
+      best = Math.max(best,m);
+      const eq = eqCounts(bet.length, m);
+      for(const k in eq) totals[k] += eq[k];
+      return {idx:i+1, bet, m, eq};
+    });
+
+    $('kBest').textContent = best;
+    $('kSena').textContent = totals[6];
+    $('kQuina').textContent = totals[5];
+    $('kQuadra').textContent = totals[4];
+
+    const eqTotal = Object.values(totals).reduce((a,b)=>a+b,0);
+    $('msg').innerHTML = `Dezenas: <b>${draw.map(pad2).join(' ')}</b> • Combinações equivalentes do bolão: <b>${eqTotal}</b> (esperado: 235)`;
+
+    renderList();
+  }
+
+  function clearAll(){
+    inputs.forEach(i=>i.value="");
+    $('kBest').textContent="—";
+    $('kSena').textContent="—";
+    $('kQuina').textContent="—";
+    $('kQuadra').textContent="—";
+    $('list').innerHTML="";
+    $('msg').innerHTML="Preencha as dezenas e clique em <b>Conferir</b>.";
+    lastResults = [];
+  }
+
+  $('btnCheck').addEventListener('click', compute);
+  $('btnClear').addEventListener('click', clearAll);
+
+  $('tabPrizes').addEventListener('click', ()=>{
+    mode='prizes';
+    $('tabPrizes').classList.add('active');
+    $('tabAll').classList.remove('active');
+    if(lastResults.length) renderList();
+  });
+  $('tabAll').addEventListener('click', ()=>{
+    mode='all';
+    $('tabAll').classList.add('active');
+    $('tabPrizes').classList.remove('active');
+    if(lastResults.length) renderList();
+  });
+
+  // UX: auto avançar ao digitar 2 dígitos
+  inputs.forEach((inp, idx)=>{
+    inp.addEventListener('input', ()=>{
+      inp.value = inp.value.replace(/\D/g,'').slice(0,2);
+      if(inp.value.length===2 && idx<5) inputs[idx+1].focus();
+    });
+  });
+</script>
+</body>
+</html>
