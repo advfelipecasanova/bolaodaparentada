@@ -6,6 +6,74 @@
   <title>Conferidor – Bolão da Parentada - Mega da Virada 2025</title>
 
   <style>
+    /* ========= RESPONSIVO (Mobile-first ajustes finais) ========= */
+
+/* melhora toque no iOS/Android */
+.num, button, .tab {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* tablets / telas médias */
+@media (max-width: 860px) {
+  .wrap { padding: 14px; }
+  .card { padding: 12px; }
+}
+
+/* celular */
+@media (max-width: 640px) {
+  .wrap { padding: 12px; }
+  h1 { font-size: 20px; line-height: 1.15; }
+  .sub { font-size: 13px; }
+
+  /* chips: quebrar bem e ficar mais compacto */
+  .chips { gap: 8px; }
+  .chip { height: 30px; padding: 0 10px; font-size: 12px; }
+
+  /* inputs: 6 campos viram 2 linhas de 3 (muito melhor no celular) */
+  .inputs {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .num { height: 44px; font-size: 16px; }
+
+  /* botões: empilhar (Conferir / Limpar) */
+  .btnRow {
+    flex-direction: column;
+    gap: 8px;
+  }
+  button { height: 44px; }
+
+  /* KPIs: 2 colunas */
+  .kpis {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .kpi { min-height: 64px; padding: 10px; }
+  .kpi .v { font-size: 20px; }
+
+  /* tabs: ficam em linha quebrável e mais “touch friendly” */
+  .tabs { gap: 8px; }
+  .tab { height: 36px; padding: 0 12px; font-size: 12px; }
+
+  /* cards da lista: melhor leitura */
+  .item { padding: 12px; border-radius: 16px; }
+  .itemTop { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .badge { align-self: flex-end; }
+
+  /* chips das dezenas: menor e mais compacto */
+  .nchip { height: 24px; padding: 0 8px; font-size: 12px; }
+}
+
+/* celular pequeno */
+@media (max-width: 380px) {
+  h1 { font-size: 18px; }
+  .sub { font-size: 12px; }
+  .chip { font-size: 11px; }
+  .num { height: 42px; }
+  .kpi .v { font-size: 18px; }
+}
+
     :root{
       /* Fundo festivo */
       --bgA:#1aa85a;     /* verde */
@@ -343,7 +411,7 @@
       <div class="chips">
         <span class="chip">🎟️ <b>80</b> apostas</span>
         <span class="chip">🧮 <b>235</b> combinações</span>
-        <span class="chip">💰 <b>R$ 1.410</b></span>
+        <span class="chip">💰🤑 <b>R$ 1.000.000.000</b></span>
       </div>
     </div>
 
