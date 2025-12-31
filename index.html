@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Conferidor – Bolão da Parentada - Mega da Virada 2025</title>
 
@@ -401,6 +402,47 @@
     }
     @media (max-width: 640px) {
   .card { box-shadow: 0 10px 24px rgba(2, 6, 23, .14); }
+}
+    /* ===== Correção de corte/zoom no iPhone (overflow horizontal) ===== */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+* { box-sizing: border-box; }
+
+/* garante que containers nunca ultrapassem a tela */
+.wrap, .card {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* iPhone safe areas (notch) */
+.wrap {
+  padding-left: max(12px, env(safe-area-inset-left));
+  padding-right: max(12px, env(safe-area-inset-right));
+}
+
+/* AQUI está o principal: grid que não “empurra” para fora */
+.inputs {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+/* inputs precisam aceitar encolher */
+.num {
+  width: 100%;
+  min-width: 0;
+}
+    .chips {
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.chip {
+  max-width: 100%;
 }
   </style>
 </head>
