@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Conferidor – Bolão Mega da Virada</title>
+  <style>
+    :root{
+      --bg:#0B1023;
+      --card:#111827;
+      --card2:#0B1223;
+      --line:#1F2937;
+      --text:#E5E7EB;
+      --muted:#94A3B8;
+      --green:#22C55E;
+      --yellow:#FBBF24;
+      --red:#F87171;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 30% -10%, rgba(34,197,94,.10), transparent 60%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(251,191,36,.08), transparent 65%),
+                  linear-gradient(180deg, #0B1023, #070B18);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:16px}
+    .top{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+    h1{font-size:20px;line-height:1.2;margin:0;font-weight:800;letter-spacing:.1px}
+    .sub{margin:0;color:var(--muted);font-size:13px;line-height:1.35}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      height:28px;padding:0 10px;border-radius:999px;
+      border:1px solid var(--line);background:rgba(11,18,35,.85);
+      color:var(--muted);font-size:12px
+    }
+    .grid{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:860px){.grid{grid-template-columns:1.1fr .9fr;}}
+    .card{
+      background:rgba(17,24,39,.92);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:14px;
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    .label{font-size:12px;color:var(--muted);margin-bottom:8px}
+    .inputs{
+      display:grid;
+      grid-template-columns:repeat(6, 1fr);
+      gap:8px;
+    }
+    .num{
+      height:48px;border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(11,18,35,.95);
+      color:var(--text);
+      font-size:16px;font-weight:700;
+      text-align:center;
+      outline:none;
+    }
+    .num:focus{border-color:rgba(34,197,94,.65); box-shadow:0 0 0 3px rgba(34,197,94,.14);}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .hint{margin-top:8px;font-size:12px;color:var(--muted)}
+    .btnRow{display:flex;gap:10px;margin-top:12px}
+    button{
+      height:44px;flex:1;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--text);
+      font-weight:800;
+      cursor:pointer;
+    }
+    button.primary{
+      background:rgba(34,197,94,.16);
+      border-color:rgba(34,197,94,.35);
+    }
+    button:hover{filter:brightness(1.07)}
+    .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+    @media(min-width:520px){.kpis{grid-template-columns:repeat(4,1fr)}}
+    .kpi{
+      background:rgba(11,18,35,.95);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      min-height:64px;
+      display:flex;flex-direction:column;justify-content:center;gap:2px;
+    }
+    .kpi .v{font-size:20px;font-weight:900}
+    .kpi .t{font-size:12px;color:var(--muted)}
+    .summary{
+      margin-top:12px;
+      background:rgba(11,18,35,.95);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      font-size:13px;color:var(--text);
+      line-height:1.35
+    }
+    .summary b{font-weight:900}
+    .tabs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .tab{
+      height:36px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--muted);
+      display:inline-flex;align-items:center;
+      font-size:13px;font-weight:800;
+      cursor:pointer;
+      user-select:none;
+    }
+    .tab.active{
+      background:rgba(11,18,35,.95);
+      color:var(--text);
+      border-color:rgba(34,197,94,.35);
+      box-shadow:0 0 0 3px rgba(34,197,94,.08) inset;
+    }
+    .list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .item{
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(17,24,39,.92);
+      padding:12px;
+    }
+    .itemTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .meta{font-size:12px;color:var(--muted)}
+    .badge{
+      font-size:12px;font-weight:900;
+      padding:4px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(11,18,35,.95);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .badge.sena{border-color:rgba(34,197,94,.50); color:var(--green); background:rgba(34,197,94,.10);}
+    .badge.quina{border-color:rgba(251,191,36,.55); color:var(--yellow); background:rgba(251,191,36,.10);}
+    .badge.quadra{border-color:rgba(248,113,113,.55); color:var(--red); background:rgba(248,113,113,.10);}
+    .nums{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .nchip{
+      height:24px;display:inline-flex;align-items:center;justify-content:center;
+      padding:0 8px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(11,18,35,.95);
+      color:var(--text);font-size:12px;font-weight:800;
+    }
+    .micro{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.35}
+    .side p{margin:10px 0 0;font-size:12px;color:var(--muted);line-height:1.5}
+    .divider{height:1px;background:var(--line);margin:10px 0}
+    .footer{margin-top:10px;font-size:12px;color:var(--muted)}
+    .error{color:var(--red);font-weight:800}
+    .ok{color:var(--green);font-weight:900}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h1>Conferidor do Bolão – Mega da Virada</h1>
+      <p class="sub">Digite as 6 dezenas sorteadas e confira os acertos em tempo real.</p>
+      <div class="chips">
+        <span class="chip">80 apostas</span>
+        <span class="chip">235 combinações</span>
+        <span class="chip">R$ 1.410</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="label">Dezenas do sorteio</div>
+        <div class="inputs" id="inputs">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N1">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N2">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N3">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N4">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N5">
+          <input class="num" inputmode="numeric" maxlength="2" placeholder="N6">
+        </div>
+        <div class="hint">Use números de 1 a 60 (sem repetir).</div>
+
+        <div class="btnRow">
+          <button class="primary" id="btnCheck">Conferir</button>
+          <button id="btnClear">Limpar</button>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><div class="v" id="kBest">—</div><div class="t">Melhor acerto</div></div>
+          <div class="kpi"><div class="v" id="kSena">—</div><div class="t">Senas (eq.)</div></div>
+          <div class="kpi"><div class="v" id="kQuina">—</div><div class="t">Quinas (eq.)</div></div>
+          <div class="kpi"><div class="v" id="kQuadra">—</div><div class="t">Quadras (eq.)</div></div>
+        </div>
+
+        <div class="summary">
+          Equivalente a <b>235</b> apostas simples. Chance aprox. de Sena: <b>~1 em 213.038</b> (0,000469%).
+        </div>
+
+        <div class="tabs">
+          <div class="tab active" id="tabPrizes">Premiações (4/5/6)</div>
+          <div class="tab" id="tabAll">Todos os jogos (0–6)</div>
+        </div>
+
+        <div class="list" id="list"></div>
+
+        <div class="footer" id="msg">Preencha as dezenas e clique em <b>Conferir</b>.</div>
+      </div>
+
+      <div class="card side">
+        <div class="label">Como o conferidor trata 7/8/9 dezenas</div>
+        <p>
+          Apostas com 7, 8 ou 9 dezenas contêm várias combinações internas de 6 dezenas.
+          O app calcula quantas dessas combinações equivalentes geram <span class="ok">Sena</span>,
+          <span style="color:var(--yellow);font-weight:900">Quina</span> e <span style="color:var(--red);font-weight:900">Quadra</span>
+          por combinatória.
+        </p>
+        <div class="divider"></div>
+        <p class="muted">
+          Ex.: uma aposta de 9 dezenas que acerta as 6 dezenas do sorteio contém 1 Sena + 18 Quinas + 45 Quadras (além de ternos).
+        </p>
+        <div class="divider"></div>
+        <p class="muted">
+          Observação: Mega-Sena premia oficialmente 4/5/6 acertos. O app mostra 2/3 acertos apenas como informação.
+        </p>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Apostas do comprovante (80)
+  const BETS = [
+    [10,20,22,29,42,59],[10,15,22,26,50,59],[3,10,22,34,38,59],[2,10,22,32,37,59],[9,10,22,36,55,59],
+    [10,14,22,27,43,59],[4,10,22,33,47,59],[10,18,21,22,53,59],[13,20,29,39,42,58],[13,15,26,39,50,58],
+    [3,13,34,38,39,58],[2,13,32,37,39,58],[9,13,36,39,55,58],[13,14,27,39,43,58],[4,13,33,39,47,58],
+    [13,18,21,39,53,58],[8,13,30,48,54,57],[9,13,25,54,55,57],[6,13,20,47,54,57],[13,14,22,34,54,57],
+    [13,31,33,39,54,57],[10,13,26,39,54,57],[13,19,20,45,54,57],[13,15,20,25,54,57],[5,13,29,34,54,57],
+    [13,30,35,44,54,57],[6,13,31,39,54,57],[12,13,23,39,54,57],[11,13,34,41,54,57],[13,14,22,39,54,57],
+    [13,22,25,39,54,57],[13,34,40,49,54,57],[6,15,29,33,48,53],[15,25,33,35,47,53],[12,15,20,47,53,55],
+    [14,15,22,23,53,55],[11,15,33,39,49,53],[10,15,26,33,53,55],[15,19,20,45,53,55],[8,15,20,25,53,55],
+    [5,15,29,34,53,55],[15,26,35,44,53,55],[6,15,31,33,53,55],[12,15,23,33,53,55],[11,15,34,41,53,55],
+    [15,22,25,33,53,55],[15,26,40,49,53,55],[15,19,26,40,50,52],[8,15,36,39,42,52],[9,15,19,42,52,57],
+    [6,15,31,45,52,57],[15,19,26,44,52,57],[11,15,23,39,52,57],[15,22,25,42,52,57],[10,15,42,49,52,57],
+    [2,15,34,38,52,57],[15,19,26,40,52,57],[3,15,20,25,52,57],[5,15,19,42,52,57],[15,22,40,47,52,57],
+    [15,20,45,54,57,59],[10,20,26,54,57,59],[9,20,29,54,57,59],[6,20,33,54,57,59],[20,37,38,54,57,59],
+    [11,20,23,54,57,59],[19,20,25,54,57,59],[3,20,49,54,57,59],[5,20,42,54,57,59],[15,20,47,54,57,59],
+    [1,8,19,23,31,42,45,54,60],[5,10,22,24,35,44,49,57],[7,12,26,28,38,46,51,59],
+    [2,14,16,33,41,52,56],[3,21,23,37,48,58,60],[1,6,18,29,39,45,55],
+    [7,8,19,33,45,58],[5,11,27,34,46,60],[9,16,20,23,32,53],[4,15,28,31,44,56],[13,25,36,42,49,60]
+  ];
+
+  const $ = (id)=>document.getElementById(id);
+  const inputs = Array.from(document.querySelectorAll('#inputs input'));
+  let mode = 'prizes'; // prizes | all
+  let lastResults = [];
+
+  function nCk(n,k){
+    if(k<0||k>n) return 0;
+    if(k===0||k===n) return 1;
+    k=Math.min(k,n-k);
+    let num=1, den=1;
+    for(let i=1;i<=k;i++){
+      num *= (n-(k-i));
+      den *= i;
+    }
+    return Math.round(num/den);
+  }
+
+  function eqCounts(n, m){
+    const e = n - m;
+    const c = {6:0,5:0,4:0,3:0,2:0,1:0,0:0};
+    for(const p of [6,5,4,3,2,1,0]){
+      const need = 6 - p;
+      if(m>=p && e>=need){
+        c[p] = nCk(m,p) * nCk(e, need);
+      }
+    }
+    return c;
+  }
+
+  function parseDraw(){
+    const raw = inputs.map(i=>i.value.trim()).filter(v=>v.length>0).map(Number);
+    if(raw.length !== 6) return {ok:false, err:"Preencha exatamente 6 dezenas."};
+    if(raw.some(v=>!Number.isInteger(v) || v<1 || v>60)) return {ok:false, err:"Use apenas números inteiros de 1 a 60."};
+    const set = new Set(raw);
+    if(set.size !== 6) return {ok:false, err:"Não repita dezenas."};
+    const draw = [...set].sort((a,b)=>a-b);
+    return {ok:true, draw, set:new Set(draw)};
+  }
+
+  function matches(bet, drawSet){
+    let m=0;
+    for(const x of bet) if(drawSet.has(x)) m++;
+    return m;
+  }
+
+  function pad2(n){ return String(n).padStart(2,'0'); }
+
+  function badgeFor(eq, m){
+    if(eq[6]>0) return {txt:'SENA', cls:'sena'};
+    if(eq[5]>0) return {txt:'QUINA', cls:'quina'};
+    if(eq[4]>0) return {txt:'QUADRA', cls:'quadra'};
+    return {txt:`${m} acertos`, cls:''};
+  }
+
+  function renderList(){
+    const list = $('list');
+    list.innerHTML = "";
+
+    const data = (mode==='prizes')
+      ? lastResults.filter(r => (r.eq[4]||r.eq[5]||r.eq[6]))
+      : lastResults;
+
+    if(!data.length){
+      const empty = document.createElement('div');
+      empty.className = 'muted';
+      empty.style.padding = '8px 2px';
+      empty.textContent = (mode==='prizes')
+        ? "Nenhuma premiação (Quadra/Quina/Sena) encontrada nas apostas para este resultado."
+        : "Sem resultados para exibir.";
+      list.appendChild(empty);
+      return;
+    }
+
+    for(const r of data){
+      const it = document.createElement('div');
+      it.className = 'item';
+
+      const b = badgeFor(r.eq, r.m);
+      const top = document.createElement('div');
+      top.className = 'itemTop';
+      top.innerHTML = `<div class="meta">Jogo #${r.idx}</div>
+                       <div class="badge ${b.cls}">${b.txt}</div>`;
+      it.appendChild(top);
+
+      const nums = document.createElement('div');
+      nums.className = 'nums';
+      r.bet.forEach(n=>{
+        const s = document.createElement('span');
+        s.className = 'nchip';
+        s.textContent = pad2(n);
+        nums.appendChild(s);
+      });
+      it.appendChild(nums);
+
+      const micro = document.createElement('div');
+      micro.className = 'micro';
+      micro.textContent = `Acertos: ${r.m} • Eq.: 6→${r.eq[6]} | 5→${r.eq[5]} | 4→${r.eq[4]} | 3→${r.eq[3]} | 2→${r.eq[2]}`;
+      it.appendChild(micro);
+
+      list.appendChild(it);
+    }
+  }
+
+  function compute(){
+    const parsed = parseDraw();
+    if(!parsed.ok){
+      $('msg').innerHTML = `<span class="error">${parsed.err}</span>`;
+      return;
+    }
+
+    const {draw, set} = parsed;
+
+    let best = 0;
+    const totals = {6:0,5:0,4:0,3:0,2:0,1:0,0:0};
+    lastResults = BETS.map((bet,i)=>{
+      const m = matches(bet,set);
+      best = Math.max(best,m);
+      const eq = eqCounts(bet.length, m);
+      for(const k in eq) totals[k] += eq[k];
+      return {idx:i+1, bet, m, eq};
+    });
+
+    $('kBest').textContent = best;
+    $('kSena').textContent = totals[6];
+    $('kQuina').textContent = totals[5];
+    $('kQuadra').textContent = totals[4];
+
+    const eqTotal = Object.values(totals).reduce((a,b)=>a+b,0);
+    $('msg').innerHTML = `Dezenas: <b>${draw.map(pad2).join(' ')}</b> • Combinações equivalentes do bolão: <b>${eqTotal}</b> (esperado: 235)`;
+
+    renderList();
+  }
+
+  function clearAll(){
+    inputs.forEach(i=>i.value="");
+    $('kBest').textContent="—";
+    $('kSena').textContent="—";
+    $('kQuina').textContent="—";
+    $('kQuadra').textContent="—";
+    $('list').innerHTML="";
+    $('msg').innerHTML="Preencha as dezenas e clique em <b>Conferir</b>.";
+    lastResults = [];
+  }
+
+  $('btnCheck').addEventListener('click', compute);
+  $('btnClear').addEventListener('click', clearAll);
+
+  $('tabPrizes').addEventListener('click', ()=>{
+    mode='prizes';
+    $('tabPrizes').classList.add('active');
+    $('tabAll').classList.remove('active');
+    if(lastResults.length) renderList();
+  });
+  $('tabAll').addEventListener('click', ()=>{
+    mode='all';
+    $('tabAll').classList.add('active');
+    $('tabPrizes').classList.remove('active');
+    if(lastResults.length) renderList();
+  });
+
+  // UX: auto avançar ao digitar 2 dígitos
+  inputs.forEach((inp, idx)=>{
+    inp.addEventListener('input', ()=>{
+      inp.value = inp.value.replace(/\D/g,'').slice(0,2);
+      if(inp.value.length===2 && idx<5) inputs[idx+1].focus();
+    });
+  });
+</script>
+</body>
+</html>
