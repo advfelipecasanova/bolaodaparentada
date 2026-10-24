@@ -1,697 +1,370 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Conferidor – Bolão da Parentada - Mega da Virada 2025</title>
-
-  <style>
-    /* ========= RESPONSIVO (Mobile-first ajustes finais) ========= */
-
-/* melhora toque no iOS/Android */
-.num, button, .tab {
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16865c">
+<meta name="description" content="Conferidor dos 21 jogos do Bolão da Parentada, Mega-Sena concurso 3074. Confira Sena, Quina, Quadra e todos os acertos.">
+<title>Bolão da Parentada | Conferidor Mega-Sena 3074</title>
+<style>
+:root{
+  --emerald:#08734d;--emerald-dark:#075139;--mint:#d7f7e5;
+  --gold:#f6ba45;--gold-light:#fff1c4;--cream:#fffdfa;
+  --ink:#17372d;--muted:#577267;--stroke:#dfebe3;--red:#cd515b;
+  --shadow:0 18px 42px rgba(21,79,50,.11);
 }
-
-/* tablets / telas médias */
-@media (max-width: 860px) {
-  .wrap { padding: 14px; }
-  .card { padding: 12px; }
+*{box-sizing:border-box}
+html{width:100%;overflow-x:clip;-webkit-text-size-adjust:100%}
+body{
+  width:100%;margin:0;min-height:100vh;overflow-x:clip;color:var(--ink);
+  font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:radial-gradient(ellipse 75% 32% at 90% 4%,rgba(255,215,107,.81),transparent 87%),
+             radial-gradient(ellipse 60% 32% at -4% 10%,rgba(71,194,142,.52),transparent 85%),
+             linear-gradient(153deg,#73caa3 0%,#c9efc7 34%,#ffedb7 65%,#d4f0e6 100%);
+  background-attachment:fixed;
 }
-
-/* celular */
-@media (max-width: 640px) {
-  .wrap { padding: 12px; }
-  h1 { font-size: 20px; line-height: 1.15; }
-  .sub { font-size: 13px; }
-
-  /* chips: quebrar bem e ficar mais compacto */
-  .chips { gap: 8px; }
-  .chip { height: 30px; padding: 0 10px; font-size: 12px; }
-
-  /* inputs: 6 campos viram 2 linhas de 3 (muito melhor no celular) */
-  .inputs {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
-  .num { height: 44px; font-size: 16px; }
-
-  /* botões: empilhar (Conferir / Limpar) */
-  .btnRow {
-    flex-direction: column;
-    gap: 8px;
-  }
-  button { height: 44px; }
-
-  /* KPIs: 2 colunas */
-  .kpis {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-  .kpi { min-height: 64px; padding: 10px; }
-  .kpi .v { font-size: 20px; }
-
-  /* tabs: ficam em linha quebrável e mais “touch friendly” */
-  .tabs { gap: 8px; }
-  .tab { height: 36px; padding: 0 12px; font-size: 12px; }
-
-  /* cards da lista: melhor leitura */
-  .item { padding: 12px; border-radius: 16px; }
-  .itemTop { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .badge { align-self: flex-end; }
-
-  /* chips das dezenas: menor e mais compacto */
-  .nchip { height: 24px; padding: 0 8px; font-size: 12px; }
+body::before{
+ content:"";z-index:0;position:fixed;inset:0;pointer-events:none;opacity:.35;
+ background-image:radial-gradient(circle,#ffffff 0 2px,transparent 2.8px),
+ radial-gradient(circle,#e5a12f 0 2px,transparent 2.9px),
+ radial-gradient(circle,#2d9d74 0 1.9px,transparent 2.8px);
+ background-size:155px 179px,192px 211px,240px 207px;
+ background-position:10px 17px,90px 81px,60px 120px;
 }
-
-/* celular pequeno */
-@media (max-width: 380px) {
-  h1 { font-size: 18px; }
-  .sub { font-size: 12px; }
-  .chip { font-size: 11px; }
-  .num { height: 42px; }
-  .kpi .v { font-size: 18px; }
+button,input{font:inherit}
+button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:focus-visible,input:focus-visible{outline:3px solid #e7aa3c;outline-offset:2px}
+.shell{position:relative;z-index:1;max-width:1010px;margin:auto;padding:30px 20px 35px}
+.hero{text-align:center;margin:0 auto 23px;max-width:690px}
+.mark{display:inline-flex;gap:6px;align-items:center;border:1px solid rgba(255,255,255,.52);background:rgba(255,255,255,.4);padding:6px 13px;border-radius:50px;color:#165540;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.hero h1{font-size:clamp(32px,5.5vw,52px);line-height:1.05;margin:12px 0 8px;font-weight:900;letter-spacing:-.045em;color:#fff;text-shadow:0 4px 16px rgba(11,96,62,.18)}
+.hero .subtitle{margin:0;color:#18543b;font-size:clamp(15px,2.3vw,18px);font-weight:650}
+.hero .intro{font-size:14px;font-weight:500;color:#286a4d;margin:10px 0 0}
+.totals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:22px auto 0;max-width:650px}
+.total{border:1px solid rgba(255,255,255,.75);background:rgba(255,255,255,.64);border-radius:18px;min-width:0;padding:13px 9px;box-shadow:0 7px 20px rgba(42,105,61,.08)}
+.total-icon{font-size:20px;display:block;margin-bottom:4px}
+.total b{display:block;font-size:clamp(19px,2.6vw,24px);line-height:1.15;color:var(--emerald-dark);font-weight:900;white-space:nowrap}
+.total span:last-child{font-size:12px;color:var(--muted);font-weight:700}
+.surface{max-width:980px;margin:0 auto;background:rgba(255,253,248,.94);box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.86);border-radius:26px;padding:26px;min-width:0}
+.section-heading{margin:0;font-size:19px;font-weight:850;letter-spacing:-.02em;color:var(--emerald-dark)}
+.section-description{font-size:13px;color:var(--muted);margin:5px 0 18px;line-height:1.5}
+.entry{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;width:100%;max-width:790px;margin:0 auto}
+.entry input{min-width:0;width:100%;height:65px;max-width:100%;border-radius:15px;border:1.5px solid #c9ded2;background:#fff;color:var(--emerald-dark);font-size:23px;font-weight:900;text-align:center;padding:4px 0;box-shadow:0 2px 0 #f2f6ee}
+.entry input::placeholder{color:#acc4b5;font-size:17px;font-weight:650}
+.entry input:focus{outline:none;border-color:#138f63;box-shadow:0 0 0 4px rgba(49,193,127,.13)}
+.entry input.invalid{border-color:var(--red);background:#fff5f6}
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px auto 0;max-width:790px}
+.action-row button{min-width:0;min-height:51px;border-radius:14px;font-size:15px;font-weight:850;padding:9px 16px;border:1px solid #d4e5d9;transition:filter .12s,transform .12s}
+.action-row button:active{transform:translateY(1px)}
+.primary{color:#fff;background:linear-gradient(100deg,#067947,#18b76d);border-color:transparent!important;box-shadow:0 9px 17px rgba(4,136,74,.18)}
+.secondary{color:#285e46;background:white}
+.action-row button:hover{filter:brightness(1.02)}
+.error{min-height:18px;margin:9px 0 0;text-align:center;color:#b33c4c;font-size:13px;font-weight:750}
+.overview{margin:21px 0 0}
+.overview-title{font-size:12px;letter-spacing:.07em;text-transform:uppercase;font-weight:850;color:#527b61;margin:0 0 10px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.kpi{min-width:0;min-height:100px;padding:17px 14px;border:1px solid #e3ebdf;border-radius:18px;background:#fff}
+.kpi:nth-child(1){background:linear-gradient(145deg,#e1f6e9,#fff)}
+.kpi:nth-child(2){background:linear-gradient(145deg,#d9f5de,#fff)}
+.kpi:nth-child(3){background:linear-gradient(145deg,#fff0c8,#fff)}
+.kpi:nth-child(4){background:linear-gradient(145deg,#e5f5fa,#fff)}
+.kpi .count{font-size:31px;font-weight:900;color:var(--emerald-dark);line-height:1.05;font-variant-numeric:tabular-nums}
+.kpi .caption{font-size:12px;font-weight:750;color:#5a7468;margin-top:7px}
+.insight{display:flex;justify-content:space-between;align-items:center;gap:16px;background:#eff9f0;border:1px solid #d8ebd9;border-radius:17px;padding:14px 16px;margin-top:13px}
+.insight strong{font-size:14px;color:var(--emerald-dark)}
+.insight p{font-size:12px;margin:3px 0 0;color:var(--muted);line-height:1.35}
+.insight button{flex-shrink:0;border:1px solid #b1d6bf;color:var(--emerald);background:white;border-radius:10px;padding:10px 12px;font-weight:800;font-size:12px}
+.insight button:disabled{cursor:not-allowed;opacity:.48}
+.results-title{font-size:20px;font-weight:850;letter-spacing:-.02em;margin:27px 0 6px;color:var(--emerald-dark)}
+.results-subtitle{color:var(--muted);font-size:13px;line-height:1.45;margin:0 0 13px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 15px}
+.tab{border:1px solid #d4e6db;color:#3c6951;background:white;border-radius:100px;font-weight:800;font-size:13px;padding:11px 17px;min-height:41px}
+.tab[aria-selected="true"]{background:#07845c;border-color:#07845c;color:white;box-shadow:0 7px 15px rgba(2,104,66,.12)}
+.empty{padding:27px 15px;border:1px dashed #bed6c3;background:#f7fbf6;border-radius:18px;text-align:center;color:var(--muted);line-height:1.55;font-size:14px}
+.empty strong{color:var(--emerald-dark);display:block;font-size:16px;margin-bottom:5px}
+.list{display:grid;grid-template-columns:minmax(0,1fr);gap:9px}
+.item{background:#fff;border:1px solid #e3ece4;border-radius:17px;padding:13px 15px;min-width:0}
+.item.has-prize{border-color:#b4d9bc;background:linear-gradient(120deg,#fff,#f5fcf3)}
+.item-head{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0}
+.item-name{font-size:13px;color:var(--emerald-dark);font-weight:850}
+.item-kind{display:inline-block;margin-left:6px;color:var(--muted);font-weight:650;font-size:11px}
+.badge{font-size:11px;padding:5px 10px;border-radius:100px;font-weight:850;color:#537065;background:#eaf3ec;white-space:nowrap}
+.badge.sena{background:#d5f5dc;color:#00653a}.badge.quina{background:#fff0bb;color:#946000}.badge.quadra{background:#dcedf8;color:#195f91}
+.numbers{display:flex;flex-wrap:wrap;gap:6px;margin:11px 0 10px;min-width:0}
+.ball{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;border-radius:100px;padding:0 7px;border:1px solid #e1eae4;color:#466452;background:#f8faf7;font-variant-numeric:tabular-nums;font-size:13px;font-weight:850}
+.ball.hit{color:white;background:#108257;border-color:#108257;box-shadow:0 3px 8px rgba(9,122,73,.12)}
+.item-foot{color:#597363;font-size:12px;line-height:1.4;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.item-foot b{color:#24523b}
+.hits-matrix{display:none;gap:5px;flex-wrap:wrap;margin-top:13px}
+.hits-matrix.on{display:flex}
+.hit-stat{background:#fff;border:1px solid #dce7db;border-radius:10px;font-size:12px;font-weight:700;padding:6px 9px;color:#476655}
+.hit-stat b{color:#0a6746}
+.audit{margin-top:24px;border-top:1px solid #e1eae0;padding-top:17px}
+.audit summary{cursor:pointer;font-weight:850;color:#176849;font-size:13px;list-style-position:outside}
+.audit p{font-size:12px;line-height:1.55;color:var(--muted);margin-bottom:0}
+.footer{text-align:center;color:#377053;font-size:12px;font-weight:550;margin:16px auto 0;max-width:700px;line-height:1.5}
+@media(min-width:760px){.list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){
+ .shell{padding:16px 12px 28px}
+ .hero{margin-bottom:16px}
+ .hero h1{font-size:clamp(29px,7.4vw,38px)}
+ .hero .intro{font-size:12px}
+ .totals{gap:7px;margin-top:15px}
+ .total{border-radius:13px;padding:10px 4px}
+ .total-icon{font-size:17px;margin-bottom:3px}
+ .total b{font-size:clamp(16px,4.6vw,21px)}
+ .total span:last-child{font-size:10px}
+ .surface{width:100%;border-radius:21px;padding:17px 13px}
+ .entry{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+ .entry input{height:56px;font-size:21px;border-radius:12px}
+ .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .kpi{min-height:85px;padding:14px 11px;border-radius:14px}
+ .kpi .count{font-size:27px}
+ .insight{align-items:stretch;flex-direction:column;gap:10px}
+ .insight button{width:100%;min-height:40px}
+ .tab{padding:10px 12px;font-size:12px}
+ .item{padding:12px 10px}
+ .ball{min-width:34px;height:34px;font-size:12px}
+ .results-title{margin-top:23px}
 }
-
-    :root{
-      /* Fundo festivo */
-      --bgA:#1aa85a;     /* verde */
-      --bgB:#ffd36b;     /* dourado */
-      --bgC:#7dd3fc;     /* azul */
-      --bgD:#e8fff3;     /* base clara */
-
-      /* UI */
-      --card: rgba(255,255,255,.86);
-      --card2: rgba(255,255,255,.72);
-      --line: rgba(15,23,42,.10);
-      --shadow: 0 16px 45px rgba(2, 6, 23, .18);
-
-      --textDark:#0b1b12;
-      --mutedDark:#48635a;
-
-      --green:#15803d;
-      --green2:#22c55e;
-      --gold:#b98500;
-      --gold2:#f59e0b;
-      --blue:#0284c7;
-      --red:#dc2626;
-
-      --radius:18px;
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:#ffffff;
-
-      /* Fundo “esperança/dinheiro/virada” */
-      background:
-        radial-gradient(900px 500px at 10% 10%, rgba(255,255,255,.25), transparent 55%),
-        radial-gradient(900px 600px at 85% 20%, rgba(255,255,255,.20), transparent 60%),
-        radial-gradient(900px 700px at 50% 0%, rgba(255,255,255,.18), transparent 55%),
-        linear-gradient(135deg, rgba(26,168,90,.85), rgba(255,211,107,.78), rgba(125,211,252,.70)),
-        linear-gradient(180deg, var(--bgD), #ffffff 70%);
-      min-height:100vh;
-      position:relative;
-      overflow-x:hidden;
-    }
-
-    /* Confete no fundo (sem imagens externas) */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.28;
-      background-image:
-        radial-gradient(circle at 10% 20%, rgba(245,158,11,.8) 0 2px, transparent 3px),
-        radial-gradient(circle at 30% 10%, rgba(34,197,94,.75) 0 2px, transparent 3px),
-        radial-gradient(circle at 70% 15%, rgba(2,132,199,.75) 0 2px, transparent 3px),
-        radial-gradient(circle at 90% 30%, rgba(245,158,11,.8) 0 2px, transparent 3px),
-        radial-gradient(circle at 20% 60%, rgba(2,132,199,.75) 0 2px, transparent 3px),
-        radial-gradient(circle at 55% 55%, rgba(34,197,94,.75) 0 2px, transparent 3px),
-        radial-gradient(circle at 80% 70%, rgba(245,158,11,.8) 0 2px, transparent 3px),
-        radial-gradient(circle at 40% 85%, rgba(34,197,94,.75) 0 2px, transparent 3px);
-      background-size: 260px 260px;
-      filter: blur(.1px);
-    }
-
-    .wrap{
-      max-width:980px;
-      margin:0 auto;
-      padding:16px;
-    }
-
-    /* Header */
-    .top{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      margin:8px 0 14px;
-      text-align:center;
-    }
-    h1{
-      margin:0;
-      font-size:26px;
-      font-weight:900;
-      letter-spacing:.2px;
-      text-shadow: 0 8px 28px rgba(2,6,23,.35);
-    }
-    .sub{
-      margin:0;
-      font-size:14px;
-      line-height:1.35;
-      color:rgba(255,255,255,.92);
-      text-shadow: 0 6px 22px rgba(2,6,23,.22);
-    }
-    .chips{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap;
-      margin-top:8px;
-    }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      height:34px;
-      padding:0 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.30);
-      background:rgba(255,255,255,.18);
-      color:#fff;
-      font-size:13px;
-      font-weight:800;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 10px 26px rgba(2,6,23,.10);
-    }
-    .chip b{font-weight:900}
-
-    /* Layout (sem coluna lateral) */
-    .grid{display:grid; grid-template-columns:1fr; gap:12px;}
-
-    /* Cards claros */
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:14px;
-      box-shadow:var(--shadow);
-      backdrop-filter: blur(10px);
-      color:var(--textDark);
-    }
-
-    .label{
-      font-size:12px;
-      color:var(--mutedDark);
-      margin-bottom:10px;
-      font-weight:800;
-      letter-spacing:.2px;
-    }
-
-    .inputs{
-      display:grid;
-      grid-template-columns:repeat(6,1fr);
-      gap:8px;
-    }
-    .num{
-      height:48px;
-      border-radius:12px;
-      border:1px solid rgba(15,23,42,.12);
-      background:rgba(255,255,255,.92);
-      color:var(--textDark);
-      font-size:16px;
-      font-weight:900;
-      text-align:center;
-      outline:none;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.65);
-    }
-    .num:focus{
-      border-color: rgba(34,197,94,.55);
-      box-shadow: 0 0 0 4px rgba(34,197,94,.15);
-    }
-
-    .hint{
-      margin-top:10px;
-      font-size:12px;
-      color:var(--mutedDark);
-      font-weight:700;
-    }
-
-    .btnRow{display:flex; gap:10px; margin-top:12px;}
-    button{
-      height:46px;
-      flex:1;
-      border-radius:14px;
-      border:1px solid rgba(15,23,42,.12);
-      background:rgba(255,255,255,.70);
-      color:var(--textDark);
-      font-weight:900;
-      cursor:pointer;
-      box-shadow: 0 10px 22px rgba(2,6,23,.08);
-    }
-    button:hover{filter:brightness(1.03)}
-    button.primary{
-      border:none;
-      color:#fff;
-      background: linear-gradient(135deg, var(--green), var(--green2));
-      box-shadow: 0 18px 36px rgba(21,128,61,.25);
-    }
-
-    /* KPIs */
-    .kpis{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-      margin-top:12px;
-    }
-    @media(min-width:520px){ .kpis{grid-template-columns:repeat(4,1fr);} }
-
-    .kpi{
-      background:var(--card2);
-      border:1px solid rgba(15,23,42,.10);
-      border-radius:16px;
-      padding:10px 12px;
-      min-height:68px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:3px;
-      box-shadow: 0 12px 26px rgba(2,6,23,.06);
-    }
-    .kpi .v{font-size:22px; font-weight:1000;}
-    .kpi .t{font-size:12px; color:var(--mutedDark); font-weight:800;}
-
-    /* Resumo */
-    .summary{
-      margin-top:12px;
-      background:var(--card2);
-      border:1px solid rgba(15,23,42,.10);
-      border-radius:16px;
-      padding:10px 12px;
-      font-size:13px;
-      color:var(--textDark);
-      line-height:1.35;
-      font-weight:700;
-    }
-    .summary b{font-weight:1000}
-
-    /* Tabs */
-    .tabs{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;}
-    .tab{
-      height:38px;
-      padding:0 14px;
-      border-radius:999px;
-      border:1px solid rgba(15,23,42,.12);
-      background:rgba(255,255,255,.65);
-      color:var(--mutedDark);
-      display:inline-flex;
-      align-items:center;
-      font-size:13px;
-      font-weight:1000;
-      cursor:pointer;
-      user-select:none;
-      box-shadow: 0 10px 22px rgba(2,6,23,.06);
-    }
-    .tab.active{
-      color:#fff;
-      border:none;
-      background: linear-gradient(135deg, var(--gold), var(--gold2));
-      box-shadow: 0 18px 34px rgba(185,133,0,.18);
-    }
-
-    /* Lista */
-    .list{display:flex; flex-direction:column; gap:10px; margin-top:12px;}
-    .item{
-      border-radius:18px;
-      border:1px solid rgba(15,23,42,.10);
-      background:rgba(255,255,255,.88);
-      padding:12px;
-      box-shadow: 0 14px 34px rgba(2,6,23,.08);
-    }
-    .itemTop{display:flex; justify-content:space-between; gap:10px; align-items:center;}
-    .meta{font-size:12px; color:var(--mutedDark); font-weight:900;}
-
-    .badge{
-      font-size:12px;
-      font-weight:1000;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(15,23,42,.10);
-      background:rgba(255,255,255,.85);
-      color:var(--mutedDark);
-      white-space:nowrap;
-      box-shadow: 0 10px 22px rgba(2,6,23,.06);
-    }
-    .badge.sena{
-      border:none;
-      color:#fff;
-      background: linear-gradient(135deg, var(--green), var(--green2));
-    }
-    .badge.quina{
-      border:none;
-      color:#fff;
-      background: linear-gradient(135deg, var(--gold), var(--gold2));
-    }
-    .badge.quadra{
-      border:none;
-      color:#fff;
-      background: linear-gradient(135deg, #ef4444, var(--red));
-    }
-
-    .nums{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
-    .nchip{
-      height:26px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:0 9px;
-      border-radius:999px;
-      border:1px solid rgba(15,23,42,.10);
-      background:rgba(255,255,255,.92);
-      color:var(--textDark);
-      font-size:12px;
-      font-weight:1000;
-    }
-    .micro{
-      margin-top:8px;
-      font-size:12px;
-      color:var(--mutedDark);
-      line-height:1.35;
-      font-weight:800;
-    }
-
-    .footer{
-      margin-top:10px;
-      font-size:12px;
-      color:var(--mutedDark);
-      font-weight:800;
-    }
-    .error{color:#b91c1c; font-weight:1000}
-    .muted{color:var(--mutedDark); font-weight:800}
-
-    /* Melhor responsividade em telas pequenas */
-    @media(max-width:420px){
-      h1{font-size:22px}
-      .chip{height:32px;font-size:12px}
-      .num{height:46px}
-    }
-    @media (max-width: 640px) {
-  .card { box-shadow: 0 10px 24px rgba(2, 6, 23, .14); }
-}
-    /* ===== Correção de corte/zoom no iPhone (overflow horizontal) ===== */
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  -webkit-text-size-adjust: 100%;
-}
-
-* { box-sizing: border-box; }
-
-/* garante que containers nunca ultrapassem a tela */
-.wrap, .card {
-  width: 100%;
-  max-width: 100%;
-}
-
-/* iPhone safe areas (notch) */
-.wrap {
-  padding-left: max(12px, env(safe-area-inset-left));
-  padding-right: max(12px, env(safe-area-inset-right));
-}
-
-/* AQUI está o principal: grid que não “empurra” para fora */
-.inputs {
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-}
-
-/* inputs precisam aceitar encolher */
-.num {
-  width: 100%;
-  min-width: 0;
-}
-    .chips {
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 100%;
-}
-
-.chip {
-  max-width: 100%;
-}
-  </style>
+@media(max-width:350px){.shell{padding-inline:8px}.surface{padding:13px 10px}.total b{font-size:15px}.tab{font-size:11px;padding-inline:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="top">
-      <h1>Conferidor do Bolão da Parentada – Mega da Virada 2025</h1>
-      <p class="sub">Digite as 6 dezenas sorteadas.</p>
+<main class="shell">
+  <header class="hero">
+    <div class="mark">🍀 Mega-Sena · Concurso 3074</div>
+    <h1>Bolão da <span style="color:#fff0a8">Parentada</span></h1>
+    <p class="subtitle">Nosso conferidor de sorte 🍀</p>
+    <p class="intro">Digite as seis dezenas do resultado e confira os jogos do bolão.</p>
+    <div class="totals" aria-label="Dados do bolão">
+      <div class="total"><span class="total-icon" aria-hidden="true">🎟️</span><b>21</b><span>apostas</span></div>
+      <div class="total"><span class="total-icon" aria-hidden="true">✨</span><b>66</b><span>combinações</span></div>
+      <div class="total"><span class="total-icon" aria-hidden="true">💰</span><b>R$ 396</b><span>apostados</span></div>
+    </div>
+  </header>
 
-      <div class="chips">
-        <span class="chip">🎟️ <b>80</b> apostas</span>
-        <span class="chip">🧮 <b>235</b> combinações</span>
-        <span class="chip">💰 <b>R$ 1.000.000.000</b> 🤑 </span>
+  <section class="surface" aria-labelledby="entry-title">
+    <h2 class="section-heading" id="entry-title">🎯 Dezenas sorteadas</h2>
+    <p class="section-description">Preencha os números de 01 a 60, sem repetir. Você pode digitar em qualquer ordem.</p>
+    <form id="draw-form" novalidate>
+      <div class="entry" id="draw-entry">
+        <input aria-label="Primeira dezena" autocomplete="off" type="text" inputmode="numeric" maxlength="2" placeholder="01" spellcheck="false">
+        <input aria-label="Segunda dezena" autocomplete="off" type="text" inputmode="numeric" maxlength="2" placeholder="02" spellcheck="false">
+        <input aria-label="Terceira dezena" autocomplete="off" type="text" inputmode="numeric" maxlength="2" placeholder="03" spellcheck="false">
+        <input aria-label="Quarta dezena" autocomplete="off" type="text" inputmode="numeric" maxlength="2" placeholder="04" spellcheck="false">
+        <input aria-label="Quinta dezena" autocomplete="off" type="text" inputmode="numeric" maxlength="2" placeholder="05" spellcheck="false">
+        <input aria-label="Sexta dezena" autocomplete="off" type="text" inputmode="numeric" maxlength="2" placeholder="06" spellcheck="false">
+      </div>
+      <div class="action-row">
+        <button class="primary" type="submit">✨ Conferir apostas</button>
+        <button class="secondary" type="button" id="clear">Limpar</button>
+      </div>
+      <p class="error" id="validation" role="alert" aria-live="polite"></p>
+    </form>
+
+    <div class="overview" aria-live="polite">
+      <p class="overview-title">Resumo da conferência</p>
+      <div class="kpis">
+        <div class="kpi"><div class="count" id="best">—</div><div class="caption">Melhor acerto</div></div>
+        <div class="kpi"><div class="count" id="sena">—</div><div class="caption">Senas</div></div>
+        <div class="kpi"><div class="count" id="quina">—</div><div class="caption">Quinas</div></div>
+        <div class="kpi"><div class="count" id="quadra">—</div><div class="caption">Quadras</div></div>
+      </div>
+      <div class="hits-matrix" id="hits-matrix" aria-label="Número de bilhetes por total de acertos"></div>
+      <div class="insight">
+        <div>
+          <strong id="insight-title">Tudo pronto para conferir!</strong>
+          <p id="insight-text">17 jogos de 6 dezenas, 3 de 7 e 1 de 8. As 66 combinações são únicas.</p>
+        </div>
+        <button id="share" type="button" disabled>Compartilhar resultado <span aria-hidden="true">↗</span></button>
       </div>
     </div>
 
-    <div class="grid">
-      <div class="card">
-        <div class="label">Dezenas do sorteio</div>
-
-        <div class="inputs" id="inputs">
-          <input class="num" inputmode="numeric" maxlength="2" placeholder="N1">
-          <input class="num" inputmode="numeric" maxlength="2" placeholder="N2">
-          <input class="num" inputmode="numeric" maxlength="2" placeholder="N3">
-          <input class="num" inputmode="numeric" maxlength="2" placeholder="N4">
-          <input class="num" inputmode="numeric" maxlength="2" placeholder="N5">
-          <input class="num" inputmode="numeric" maxlength="2" placeholder="N6">
-        </div>
-
-        <div class="hint">Use números de 1 a 60 (sem repetir).</div>
-
-        <div class="btnRow">
-          <button class="primary" id="btnCheck">Conferir</button>
-          <button id="btnClear">Limpar</button>
-        </div>
-
-        <div class="kpis">
-          <div class="kpi"><div class="v" id="kBest">—</div><div class="t">Melhor acerto</div></div>
-          <div class="kpi"><div class="v" id="kSena">—</div><div class="t">Senas (eq.)</div></div>
-          <div class="kpi"><div class="v" id="kQuina">—</div><div class="t">Quinas (eq.)</div></div>
-          <div class="kpi"><div class="v" id="kQuadra">—</div><div class="t">Quadras (eq.)</div></div>
-        </div>
-
-        <div class="summary">
-          Equivalente a <b>235</b> apostas simples. Chance aprox. de Sena: <b>~1 em 213.038</b>
-        </div>
-
-        <div class="tabs">
-          <div class="tab active" id="tabPrizes">Premiações (4/5/6)</div>
-          <div class="tab" id="tabAll">Todos os jogos (0–6)</div>
-        </div>
-
-        <div class="list" id="list"></div>
-
-        <div class="footer" id="msg">Preencha as dezenas e clique em <b>Conferir</b>.</div>
-      </div>
+    <h2 class="results-title">Nossos jogos</h2>
+    <p class="results-subtitle" id="result-note">Confira todos os bilhetes ou veja somente os premiados.</p>
+    <div class="tabs" role="tablist" aria-label="Filtrar jogos">
+      <button type="button" class="tab" id="tab-prizes" role="tab" aria-selected="true" aria-controls="list">🏆 Premiados</button>
+      <button type="button" class="tab" id="tab-all" role="tab" aria-selected="false" aria-controls="list">🎟️ Todos os 21 jogos</button>
     </div>
-  </div>
-
+    <div class="list" id="list" aria-live="polite"></div>
+    <details class="audit">
+      <summary>Como funciona a conferência e a contagem dos prêmios?</summary>
+      <p>As 21 apostas foram transcritas do comprovante efetivado da CAIXA (concurso 3074, 24/10/2026). São 17 jogos com seis dezenas, três com sete e um com oito. Total: R$ 396,00. Não há repetição entre as 66 combinações equivalentes de seis dezenas.</p>
+      <p>Os números verdes indicam dezenas acertadas. A contagem de Sena, Quina e Quadra considera todas as combinações de seis dezenas existentes em cada aposta múltipla. Assim, um bilhete com sete ou oito dezenas pode gerar mais de um prêmio. A faixa de maior acerto mostra a quantidade de dezenas sorteadas presentes em um único bilhete; as contagens de prêmios mostram quantas combinações equivalentes foram premiadas.</p>
+      <p><strong>Importante:</strong> esta página não consulta automaticamente o resultado oficial nem calcula o valor em reais dos prêmios. Digite as dezenas divulgadas pela CAIXA e confira o comprovante original para validação definitiva.</p>
+    </details>
+  </section>
+  <p class="footer">🍀 Feito para a Parentada · Mega-Sena, concurso 3074 · Resultado digitado manualmente · Boa sorte!</p>
+</main>
 <script>
-  // Apostas do comprovante (80)
-  const BETS = [
-    [1,8,19,23,31,42,45,54,60],[5,10,22,24,35,44,49,57],[7,12,26,28,38,46,51,59],[2,14,16,33,41,52,56],[3,21,23,37,48,58,60],
-    [1,6,18,29,39,45,55],[29,42,20,22,59,10],[15,50,26,22,59,10],[3,38,34,22,59,10],[2,37,32,22,59,10],
-    [9,36,55,22,59,10],[14,27,43,22,59,10],[33,4,47,22,59,10],[53,21,18,22,59,10],[29,42,20,13,39,58],
-    [15,50,26,13,39,58],[3,38,34,13,39,58],[2,37,32,13,39,58],[9,36,55,13,39,58],[14,27,43,13,39,58],
-    [33,4,47,13,39,58],[53,21,18,13,39,58],[29,42,20,30,46,17],[15,50,26,30,46,17],[3,38,34,30,46,17],
-    [2,37,32,30,46,17],[9,36,55,30,46,17],[14,27,43,30,46,17],[33,4,47,30,46,17],[53,21,18,30,46,17],
-    [29,42,20,54,12,31],[15,50,26,54,12,31],[3,38,34,54,12,31],[2,37,32,54,12,31],[9,36,55,54,12,31],
-    [14,27,43,54,12,31],[33,4,47,54,12,31],[53,21,18,54,12,31],[29,42,20,8,44,25],[15,50,26,8,44,25],
-    [3,38,34,8,44,25],[2,37,32,8,44,25],[9,36,55,8,44,25],[14,27,43,8,44,25],[33,4,47,8,44,25],
-    [53,21,18,8,44,25],[29,42,20,48,6,57],[15,50,26,48,6,57],[3,38,34,48,6,57],[2,37,32,48,6,57],
-    [9,36,55,48,6,57],[14,27,43,48,6,57],[33,4,47,48,6,57],[53,21,18,48,6,57],[29,42,20,35,11,41],
-    [15,50,26,35,11,41],[3,38,34,35,11,41],[2,37,32,35,11,41],[9,36,55,35,11,41],[14,27,43,35,11,41],
-    [33,4,47,35,11,41],[53,21,18,35,11,41],[29,42,20,40,52,19],[15,50,26,40,52,19],[3,38,34,40,52,19],
-    [2,37,32,40,52,19],[9,36,55,40,52,19],[14,27,43,40,52,19],[33,4,47,40,52,19],[53,21,18,40,52,19],
-    [5,7,10,22,37,54],[16,24,3,18,35,59],[28,49,2,14,41,52],[51,56,6,21,38,47],[1,24,12,26,39,55],
-    [7,45,8,19,33,58],[5,60,11,27,34,46],[16,23,9,20,32,53],[28,56,4,15,31,44],[49,60,13,25,36,42]
-  ];
-
-  const $ = (id)=>document.getElementById(id);
-  const inputs = Array.from(document.querySelectorAll('#inputs input'));
-  let mode = 'prizes';
-  let lastResults = [];
-
-  function nCk(n,k){
-    if(k<0||k>n) return 0;
-    if(k===0||k===n) return 1;
-    k=Math.min(k,n-k);
-    let num=1, den=1;
-    for(let i=1;i<=k;i++){
-      num *= (n-(k-i));
-      den *= i;
-    }
-    return Math.round(num/den);
-  }
-
-  function eqCounts(n, m){
-    const e = n - m;
-    const c = {6:0,5:0,4:0,3:0,2:0,1:0,0:0};
-    for(const p of [6,5,4,3,2,1,0]){
-      const need = 6 - p;
-      if(m>=p && e>=need){
-        c[p] = nCk(m,p) * nCk(e, need);
-      }
-    }
-    return c;
-  }
-
-  function parseDraw(){
-    const raw = inputs.map(i=>i.value.trim()).filter(v=>v.length>0).map(Number);
-    if(raw.length !== 6) return {ok:false, err:"Preencha exatamente 6 dezenas."};
-    if(raw.some(v=>!Number.isInteger(v) || v<1 || v>60)) return {ok:false, err:"Use apenas números inteiros de 1 a 60."};
-    const set = new Set(raw);
-    if(set.size !== 6) return {ok:false, err:"Não repita dezenas."};
-    const draw = [...set].sort((a,b)=>a-b);
-    return {ok:true, draw, set:new Set(draw)};
-  }
-
-  function matches(bet, drawSet){
-    let m=0;
-    for(const x of bet) if(drawSet.has(x)) m++;
-    return m;
-  }
-
-  function pad2(n){ return String(n).padStart(2,'0'); }
-
-  function badgeFor(eq, m){
-    if(eq[6]>0) return {txt:'SENA', cls:'sena'};
-    if(eq[5]>0) return {txt:'QUINA', cls:'quina'};
-    if(eq[4]>0) return {txt:'QUADRA', cls:'quadra'};
-    return {txt:`${m} acertos`, cls:''};
-  }
-
-  function renderList(){
-    const list = $('list');
-    list.innerHTML = "";
-
-    const data = (mode==='prizes')
-      ? lastResults.filter(r => (r.eq[4]||r.eq[5]||r.eq[6]))
-      : lastResults;
-
-    if(!data.length){
-      const empty = document.createElement('div');
-      empty.className = 'muted';
-      empty.style.padding = '8px 2px';
-      empty.textContent = (mode==='prizes')
-        ? "Nenhuma premiação (Quadra/Quina/Sena) encontrada nas apostas para este resultado."
-        : "Sem resultados para exibir.";
-      list.appendChild(empty);
-      return;
-    }
-
-    for(const r of data){
-      const it = document.createElement('div');
-      it.className = 'item';
-
-      const b = badgeFor(r.eq, r.m);
-      const top = document.createElement('div');
-      top.className = 'itemTop';
-      top.innerHTML = `<div class="meta">Jogo #${r.idx}</div>
-                       <div class="badge ${b.cls}">${b.txt}</div>`;
-      it.appendChild(top);
-
-      const nums = document.createElement('div');
-      nums.className = 'nums';
-      r.bet.forEach(n=>{
-        const s = document.createElement('span');
-        s.className = 'nchip';
-        s.textContent = pad2(n);
-        nums.appendChild(s);
-      });
-      it.appendChild(nums);
-
-      const micro = document.createElement('div');
-      micro.className = 'micro';
-      micro.textContent = `Acertos: ${r.m} • Eq.: 6→${r.eq[6]} | 5→${r.eq[5]} | 4→${r.eq[4]} | 3→${r.eq[3]} | 2→${r.eq[2]}`;
-      it.appendChild(micro);
-
-      list.appendChild(it);
-    }
-  }
-
-  function compute(){
-    const parsed = parseDraw();
-    if(!parsed.ok){
-      $('msg').innerHTML = `<span class="error">${parsed.err}</span>`;
-      return;
-    }
-
-    const {draw, set} = parsed;
-
-    let best = 0;
-    const totals = {6:0,5:0,4:0,3:0,2:0,1:0,0:0};
-
-    lastResults = BETS.map((bet,i)=>{
-      const m = matches(bet,set);
-      best = Math.max(best,m);
-      const eq = eqCounts(bet.length, m);
-      for(const k in eq) totals[k] += eq[k];
-      return {idx:i+1, bet, m, eq};
-    });
-
-    $('kBest').textContent = best;
-    $('kSena').textContent = totals[6];
-    $('kQuina').textContent = totals[5];
-    $('kQuadra').textContent = totals[4];
-
-    const eqTotal = Object.values(totals).reduce((a,b)=>a+b,0);
-    $('msg').innerHTML = `Dezenas: <b>${draw.map(pad2).join(' ')}</b> • Combinações equivalentes do bolão: <b>${eqTotal}</b> (esperado: 235)`;
-
-    renderList();
-  }
-
-  function clearAll(){
-    inputs.forEach(i=>i.value="");
-    $('kBest').textContent="—";
-    $('kSena').textContent="—";
-    $('kQuina').textContent="—";
-    $('kQuadra').textContent="—";
-    $('list').innerHTML="";
-    $('msg').innerHTML="Preencha as dezenas e clique em <b>Conferir</b>.";
-    lastResults = [];
-  }
-
-  $('btnCheck').addEventListener('click', compute);
-  $('btnClear').addEventListener('click', clearAll);
-
-  $('tabPrizes').addEventListener('click', ()=>{
-    mode='prizes';
-    $('tabPrizes').classList.add('active');
-    $('tabAll').classList.remove('active');
-    if(lastResults.length) renderList();
+'use strict';
+// Jogos na MESMA ORDEM em que aparecem no comprovante da CAIXA.
+// Fonte: compra finalizada em 24/10/2026, concurso 3074.
+const BETS = [[17,19,40,57,59,60],[1,2,3,6,7,22],[25,38,42,47,59,60],[15,18,31,47,51,60],[33,39,45,46,49,58],[13,17,28,31,37,38],[27,31,34,39,48,53],[5,8,16,22,31,55],[19,23,24,36,44,45],[4,6,9,12,20,50,56],[2,8,31,38,42,60],[2,5,10,19,20,36,49],[15,18,22,50,53,54],[13,25,34,35,36,38],[2,11,25,42,52,53],[1,4,27,36,52,57],[9,14,30,32,34,37],[10,12,15,34,41,44,45,46],[7,8,9,12,30,55],[17,27,33,37,44,51],[7,10,11,18,19,30,48]];
+const EXPECTED_TOTAL=396,EXPECTED_COMBINATIONS=66,EXPECTED_BETS=21;
+const el=id=>document.getElementById(id);
+const inputs=[...document.querySelectorAll('#draw-entry input')];
+const pad=n=>String(n).padStart(2,'0');
+let state={draw:null,results:null,totals:null,tab:'prizes'};
+function choose(n,k){
+ if(k<0||k>n)return 0;
+ k=Math.min(k,n-k);
+ let v=1;for(let i=1;i<=k;i++)v=v*(n-i+1)/i;
+ return Math.round(v);
+}
+function expandTicket(nums){
+ const result=[];
+ function rec(start,part){
+   if(part.length===6){result.push([...part].sort((a,b)=>a-b).join('-'));return;}
+   for(let i=start;i<=nums.length-(6-part.length);i++){part.push(nums[i]);rec(i+1,part);part.pop();}
+ }
+ rec(0,[]);return result;
+}
+function auditBets(){
+ const sums={};let cost=0;const eq=[];
+ BETS.forEach(b=>{
+  if(![6,7,8].includes(b.length)||new Set(b).size!==b.length||b.some(n=>!Number.isInteger(n)||n<1||n>60))throw Error('Aposta inválida.');
+  sums[b.length]=(sums[b.length]||0)+1;
+  cost+=6*choose(b.length,6);
+  eq.push(...expandTicket(b));
+ });
+ if(BETS.length!==EXPECTED_BETS||cost!==EXPECTED_TOTAL||eq.length!==EXPECTED_COMBINATIONS||new Set(eq).size!==eq.length||sums[6]!==17||sums[7]!==3||sums[8]!==1){throw Error('Dados das apostas não passaram na auditoria de integridade.');}
+ return true;
+}
+function prizesFor(n,m){
+ const e=n-m;
+ const r={6:0,5:0,4:0};
+ for(const p of [6,5,4])r[p]=choose(m,p)*choose(e,6-p);
+ return r;
+}
+function parseDraw(){
+ const strs=inputs.map(x=>x.value.trim());
+ inputs.forEach(x=>x.classList.remove('invalid'));
+ if(strs.some(s=>!s)){return {error:'Digite as seis dezenas para conferir.'};}
+ if(strs.some(s=>!/^\d{1,2}$/.test(s))){return {error:'Digite apenas números de 01 a 60.'};}
+ const values=strs.map(Number);
+ const invalid=values.map((n,i)=>(n<1||n>60)?i:-1).filter(i=>i>=0);
+ if(invalid.length){invalid.forEach(i=>inputs[i].classList.add('invalid'));return {error:'As dezenas devem estar entre 01 e 60.'};}
+ if(new Set(values).size!==6){
+  const counts=new Map();values.forEach((n,i)=>counts.set(n,[...(counts.get(n)||[]),i]));
+  for(const ids of counts.values())if(ids.length>1)ids.forEach(i=>inputs[i].classList.add('invalid'));
+  return {error:'Existem dezenas repetidas. Digite seis números diferentes.'};
+ }
+ return {draw:values.sort((a,b)=>a-b)};
+}
+function text(tag,className,content){const n=document.createElement(tag);if(className)n.className=className;n.textContent=content;return n;}
+function addChild(parent,...nodes){nodes.forEach(n=>parent.appendChild(n));return parent;}
+function itemFor(r){
+ const box=text('article','item'+(r.prizes[6]||r.prizes[5]||r.prizes[4]?' has-prize':''),'');
+ const head=text('div','item-head','');
+ const name=text('span','item-name','Jogo '+String(r.index).padStart(2,'0'));
+ const kind=text('span','item-kind',r.n+' dezenas');name.appendChild(kind);
+ let bcls='',label=r.m+' '+(r.m===1?'acerto':'acertos');
+ if(r.prizes[6]){bcls='sena';label='🎉 SENA';}
+ else if(r.prizes[5]){bcls='quina';label='⭐ QUINA';}
+ else if(r.prizes[4]){bcls='quadra';label='🏆 QUADRA';}
+ addChild(head,name,text('span','badge '+bcls,label));box.appendChild(head);
+ const balls=text('div','numbers','');
+ r.bet.forEach(n=>balls.appendChild(text('span','ball'+(r.drawSet.has(n)?' hit':''),pad(n))));
+ box.appendChild(balls);
+ const foot=text('div','item-foot','');
+ foot.appendChild(text('span','',r.m+' '+(r.m===1?'dezena acertada':'dezenas acertadas')));
+ const parts=[];for(const k of [6,5,4])if(r.prizes[k])parts.push(r.prizes[k]+' '+({6:'Sena',5:'Quina',4:'Quadra'})[k]+(r.prizes[k]>1?'s':''));
+ foot.appendChild(text('b','',parts.length?parts.join(' · '):'Sem premiação'));
+ box.appendChild(foot);return box;
+}
+function render(){
+ const list=el('list');list.replaceChildren();
+ el('tab-prizes').setAttribute('aria-selected',String(state.tab==='prizes'));
+ el('tab-all').setAttribute('aria-selected',String(state.tab==='all'));
+ if(!state.results){
+  if(state.tab==='prizes')list.appendChild(addChild(text('div','empty',''),text('strong','','Ainda não conferimos o sorteio.'),text('span','','Digite as seis dezenas e toque em Conferir apostas.')));
+  else BETS.forEach((bet,i)=>{
+   const x=text('article','item','');const top=text('div','item-head','');
+   addChild(top,text('span','item-name','Jogo '+pad(i+1)),text('span','badge',bet.length+' dezenas'));
+   const balls=text('div','numbers','');bet.forEach(n=>balls.appendChild(text('span','ball',pad(n))));
+   addChild(x,top,balls);list.appendChild(x);
   });
-  $('tabAll').addEventListener('click', ()=>{
-    mode='all';
-    $('tabAll').classList.add('active');
-    $('tabPrizes').classList.remove('active');
-    if(lastResults.length) renderList();
-  });
-
-  // UX: auto avançar ao digitar 2 dígitos
-  inputs.forEach((inp, idx)=>{
-    inp.addEventListener('input', ()=>{
-      inp.value = inp.value.replace(/\D/g,'').slice(0,2);
-      if(inp.value.length===2 && idx<5) inputs[idx+1].focus();
-    });
-  });
+  return;
+ }
+ const shown=state.tab==='prizes'?state.results.filter(r=>r.prizes[6]||r.prizes[5]||r.prizes[4]):state.results;
+ if(!shown.length){list.appendChild(addChild(text('div','empty',''),text('strong','','Nenhuma Quadra, Quina ou Sena.'),text('span','','Você pode abrir Todos os 21 jogos para conferir os acertos menores.')));return;}
+ // Preserve receipt order for auditing against the PDF.
+ shown.forEach(r=>list.appendChild(itemFor(r)));
+}
+function compute(event){
+ if(event)event.preventDefault();
+ const parsed=parseDraw();const error=el('validation');
+ if(parsed.error){error.textContent=parsed.error;return;}
+ error.textContent='';const draw=parsed.draw,drawSet=new Set(draw);
+ let best=0;const totals={4:0,5:0,6:0},hist=Array(9).fill(0);
+ const results=BETS.map((bet,i)=>{
+  const m=bet.filter(n=>drawSet.has(n)).length;
+  best=Math.max(best,m);hist[m]++;
+  const prizes=prizesFor(bet.length,m);
+  for(const k of [4,5,6])totals[k]+=prizes[k];
+  return {index:i+1,n:bet.length,bet,m,prizes,drawSet};
+ });
+ state={...state,draw,results,totals};
+ el('best').textContent=best;el('sena').textContent=totals[6];el('quina').textContent=totals[5];el('quadra').textContent=totals[4];
+ el('hits-matrix').replaceChildren();
+ hist.slice(0,7).forEach((amount,i)=>{
+   const box=text('span','hit-stat',i+' acertos: ');
+   box.appendChild(text('b','',String(amount)));
+   el('hits-matrix').appendChild(box);
+ });
+ el('hits-matrix').classList.add('on');
+ el('insight-title').textContent=(totals[6]>0)?'🎉 Temos Sena no resultado informado!':(totals[5]>0)?'⭐ Temos Quina no resultado informado!':(totals[4]>0)?'🏆 Temos Quadra no resultado informado!':'Resultado conferido!';
+ el('insight-text').textContent='Dezenas informadas: '+draw.map(pad).join(' · ')+'. Confira com o resultado oficial da CAIXA.';
+ el('result-note').textContent='Números destacados em verde coincidem com o resultado digitado. Jogos na ordem do comprovante.';
+ el('share').disabled=false;
+ render();
+}
+function clearAll(){
+ inputs.forEach(x=>{x.value='';x.classList.remove('invalid');});
+ state={draw:null,results:null,totals:null,tab:'prizes'};
+ el('best').textContent=el('sena').textContent=el('quina').textContent=el('quadra').textContent='—';
+ el('validation').textContent='';el('hits-matrix').classList.remove('on');el('hits-matrix').replaceChildren();
+ el('insight-title').textContent='Tudo pronto para conferir!';el('insight-text').textContent='17 jogos de 6 dezenas, 3 de 7 e 1 de 8. As 66 combinações são únicas.';
+ el('result-note').textContent='Confira todos os bilhetes ou veja somente os premiados.';
+ el('share').disabled=true;render();
+}
+function reportText(){
+ const t=state.totals;
+ return '🍀 Bolão da Parentada – Mega-Sena 3074\nResultado digitado: '+state.draw.map(pad).join(' - ')+'\nSenas: '+t[6]+' | Quinas: '+t[5]+' | Quadras: '+t[4]+'\n21 apostas · 66 combinações equivalentes\nConferência não oficial. Verifique na CAIXA.\n'+location.href;
+}
+async function shareResult(){
+ if(!state.draw)return;
+ const report=reportText();
+ try{
+  if(navigator.share)await navigator.share({text:report});
+  else if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(report);el('insight-text').textContent='Resumo copiado! Cole no grupo do WhatsApp.';}
+  else{const temp=document.createElement('textarea');temp.value=report;document.body.appendChild(temp);temp.select();document.execCommand('copy');temp.remove();el('insight-text').textContent='Resumo copiado! Cole no grupo do WhatsApp.';}
+ }catch(e){if(e.name!=='AbortError')el('insight-text').textContent='Não foi possível compartilhar; confira as permissões do navegador.';}
+}
+try{auditBets()}catch(err){el('validation').textContent='Erro na conferência interna das apostas. Não utilize este conferidor.';throw err;}
+el('draw-form').addEventListener('submit',compute);
+el('clear').addEventListener('click',clearAll);
+el('share').addEventListener('click',shareResult);
+el('tab-prizes').addEventListener('click',()=>{state.tab='prizes';render();});
+el('tab-all').addEventListener('click',()=>{state.tab='all';render();});
+inputs.forEach((input,i)=>{
+ input.addEventListener('input',()=>{
+  input.value=input.value.replace(/\D/g,'').slice(0,2);
+  input.classList.remove('invalid');el('validation').textContent='';
+  if(input.value.length===2&&i<inputs.length-1)inputs[i+1].focus();
+ });
+ input.addEventListener('paste',ev=>{
+  const plain=(ev.clipboardData||window.clipboardData).getData('text');
+  const pieces=plain.trim().split(/[\s,;\-]+/);
+  if(pieces.length===6&&pieces.every(x=>/^\d{1,2}$/.test(x))){
+   ev.preventDefault();pieces.forEach((num,j)=>inputs[j].value=num);inputs[5].blur();el('validation').textContent='';
+  }
+ });
+});
+render();
 </script>
 </body>
 </html>
